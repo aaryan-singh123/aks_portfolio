@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AKSByte Social Media Handling Plans</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom Config for Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        darkBg: '#09101f',
+                        brandBlue: '#2563eb',
+                        brandGreen: '#16a34a',
+                        brandPurple: '#9333ea',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Animations & Styles */
+        body {
+            background-color: #f8fafc;
+            overflow-x: hidden;
+        }
+
+        /* Hero Background Pattern */
+        .hero-pattern {
+            background-color: #09101f;
+            background-image: radial-gradient(#1e293b 1px, transparent 1px);
+            background-size: 30px 30px;
+            position: relative;
+        }
+        
+        /* Floating background circles for extra premium feel */
+        .hero-pattern::before, .hero-pattern::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(45deg, rgba(37, 99, 235, 0.2), rgba(147, 51, 234, 0.2));
+            filter: blur(60px);
+            z-index: 0;
+        }
+        .hero-pattern::before {
+            width: 300px; height: 300px;
+            top: -100px; left: -100px;
+        }
+        .hero-pattern::after {
+            width: 400px; height: 400px;
+            bottom: -150px; right: -100px;
+        }
+
+        .relative-z {
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Scroll Animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; }
+        .delay-400 { transition-delay: 400ms; }
+        
+        /* Smooth Card Hover Effects */
+        .pricing-card {
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.1);
+        }
+        
+        /* Most Popular Card Specific */
+        @media (min-width: 1024px) {
+            .card-popular {
+                transform: scale(1.05);
+                z-index: 20;
+            }
+            .card-popular:hover {
+                transform: scale(1.05) translateY(-8px);
+            }
+        }
+
+        /* Additional Services Cards */
+        .service-card {
+            transition: all 0.3s ease;
+            border: 1px solid #e2e8f0;
+        }
+        .service-card:hover {
+            border-color: #cbd5e1;
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05);
+            transform: translateY(-3px);
+        }
+
+        /* List Items Styling */
+        .feature-list li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            color: #334155;
+            font-size: 0.95rem;
+        }
+        .feature-list i {
+            margin-top: 0.25rem;
+            margin-right: 0.75rem;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased text-slate-800 selection:bg-brandBlue selection:text-white">
+
+    <!-- Header Section -->
+    <header class="hero-pattern pt-20 pb-40 px-6 text-center overflow-hidden">
+        <div class="relative-z max-w-4xl mx-auto animate-on-scroll">
+            
+            <h2 class="text-brandBlue font-heading font-bold tracking-widest text-lg md:text-xl mb-4">AKSByte</h2>
+            
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-white mb-6 leading-tight">
+                Social Media  <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">Handling</span>
+            </h1>
+            <p class="text-slate-300 text-lg md:text-xl max-w-2xl mx-auto font-light mb-8">Subscription Plans</p>
+            
+            <div class="inline-block bg-white/10 backdrop-blur-md border border-white/20 text-white text-sm md:text-base px-6 py-3 rounded-full font-medium">
+                <i class="fa-solid fa-rocket text-brandBlue mr-2"></i> Elevate Your Brand. Engage Your Audience. Grow Your Business.
+            </div>
+        </div>
+    </header>
+
+    <!-- Pricing Cards Section -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-24 relative z-20 pb-20">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-start">
+
+            <!-- Social Basic Plan -->
+            <div class="pricing-card animate-on-scroll delay-100 bg-white rounded-3xl p-8 shadow-xl border border-slate-100 flex flex-col h-full">
+                <div class="text-center mb-8">
+                    <div class="w-20 h-20 mx-auto bg-blue-50 rounded-full flex items-center justify-center mb-4 text-brandBlue text-3xl">
+                        <i class="fa-solid fa-rocket"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-slate-800 text-xl mb-1">SOCIAL <span class="text-brandBlue">BASIC</span></h3>
+                    <div class="mt-2 mb-4 bg-blue-50 text-brandBlue text-xs uppercase tracking-wider font-semibold py-1.5 px-4 rounded-lg inline-block border border-blue-100">
+                        Best for Startups
+                    </div>
+                    <div class="flex items-baseline justify-center text-slate-800 font-heading mt-2">
+                        <span class="text-2xl font-bold tracking-tight mr-1">₹</span>
+                        <span class="text-5xl font-bold tracking-tight">499</span>
+                        <span class="text-slate-500 ml-1">/month</span>
+                    </div>
+                </div>
+
+                <ul class="feature-list flex-1 mb-8">
+                    <li><i class="fa-solid fa-circle-check text-brandBlue"></i> 8 Posts / Month</li>
+                    <li><i class="fa-solid fa-circle-check text-brandBlue"></i> Captions</li>
+                    <li><i class="fa-solid fa-circle-check text-brandBlue"></i> Hashtags</li>
+                    <li><i class="fa-solid fa-circle-check text-brandBlue"></i> Monthly Report</li>
+                </ul>
+
+                <button class="w-full bg-brandBlue hover:bg-blue-700 text-white font-semibold py-3.5 rounded-xl transition-colors duration-300 shadow-lg shadow-blue-500/30">
+                    Get Started
+                </button>
+            </div>
+
+            <!-- Social Growth Plan (Most Popular) -->
+            <div class="pricing-card card-popular animate-on-scroll delay-200 bg-white rounded-3xl p-8 shadow-2xl border-2 border-brandGreen flex flex-col h-full relative">
+                <!-- Most Popular Badge -->
+                <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-brandGreen text-white font-bold text-xs uppercase tracking-wider py-1.5 px-6 rounded-full shadow-md z-10 whitespace-nowrap">
+                    MOST POPULAR
+                </div>
+
+                <div class="text-center mb-8">
+                    <div class="w-20 h-20 mx-auto bg-green-50 rounded-full flex items-center justify-center mb-4 text-brandGreen text-3xl">
+                        <i class="fa-solid fa-arrow-trend-up"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-slate-800 text-xl mb-1">SOCIAL <span class="text-brandGreen">GROWTH</span></h3>
+                    <div class="mt-2 mb-4 bg-green-50 text-brandGreen text-xs uppercase tracking-wider font-semibold py-1.5 px-4 rounded-lg inline-block border border-green-100">
+                        Best for Growing Businesses
+                    </div>
+                    <div class="flex items-baseline justify-center text-slate-800 font-heading mt-2">
+                        <span class="text-2xl font-bold tracking-tight mr-1">₹</span>
+                        <span class="text-5xl font-bold tracking-tight">999</span>
+                        <span class="text-slate-500 ml-1">/month</span>
+                    </div>
+                </div>
+
+                <ul class="feature-list flex-1 mb-8">
+                    <li><i class="fa-solid fa-circle-check text-brandGreen"></i> 15 Posts / Month</li>
+                    <li><i class="fa-solid fa-circle-check text-brandGreen"></i> 2 Reels Posting</li>
+                    <li><i class="fa-solid fa-circle-check text-brandGreen"></i> Story Updates</li>
+                    <li><i class="fa-solid fa-circle-check text-brandGreen"></i> Engagement Support</li>
+                    <li><i class="fa-solid fa-circle-check text-brandGreen"></i> Monthly Analytics Report</li>
+                </ul>
+
+                <button class="w-full bg-brandGreen hover:bg-green-700 text-white font-semibold py-3.5 rounded-xl transition-colors duration-300 shadow-lg shadow-green-500/30">
+                    Get Started
+                </button>
+            </div>
+
+            <!-- Social Premium Plan -->
+            <div class="pricing-card animate-on-scroll delay-300 bg-white rounded-3xl p-8 shadow-xl border border-slate-100 flex flex-col h-full">
+                <div class="text-center mb-8">
+                    <div class="w-20 h-20 mx-auto bg-purple-50 rounded-full flex items-center justify-center mb-4 text-brandPurple text-3xl">
+                        <i class="fa-solid fa-crown"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-slate-800 text-xl mb-1">SOCIAL <span class="text-brandPurple">PREMIUM</span></h3>
+                    <div class="mt-2 mb-4 bg-purple-50 text-brandPurple text-xs uppercase tracking-wider font-semibold py-1.5 px-4 rounded-lg inline-block border border-purple-100">
+                        Best for Serious Brands
+                    </div>
+                    <div class="flex items-baseline justify-center text-slate-800 font-heading mt-2">
+                        <span class="text-2xl font-bold tracking-tight mr-1">₹</span>
+                        <span class="text-5xl font-bold tracking-tight">1999</span>
+                        <span class="text-slate-500 ml-1">/month</span>
+                    </div>
+                </div>
+
+                <ul class="feature-list flex-1 mb-8">
+                    <li><i class="fa-solid fa-circle-check text-brandPurple"></i> 30 Posts / Month</li>
+                    <li><i class="fa-solid fa-circle-check text-brandPurple"></i> 5 Reels + Stories</li>
+                    <li><i class="fa-solid fa-circle-check text-brandPurple"></i> Full Engagement Handling</li>
+                    <li><i class="fa-solid fa-circle-check text-brandPurple"></i> Content Calendar</li>
+                    <li><i class="fa-solid fa-circle-check text-brandPurple"></i> Growth Strategy</li>
+                </ul>
+
+                <button class="w-full bg-brandPurple hover:bg-purple-700 text-white font-semibold py-3.5 rounded-xl transition-colors duration-300 shadow-lg shadow-purple-500/30">
+                    Get Started
+                </button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Included Services Section -->
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+        
+        <div class="text-center mb-12 animate-on-scroll">
+            <h2 class="text-2xl md:text-3xl font-heading font-bold text-slate-800 mb-2 mt-4 relative inline-block">
+                Included Services
+                <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-brandBlue rounded-full"></div>
+            </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Account Setup -->
+            <div class="service-card animate-on-scroll delay-100 bg-white rounded-2xl p-6 md:p-8">
+                <div class="w-14 h-14 rounded-full bg-blue-50 text-brandBlue flex items-center justify-center text-2xl mb-6 shadow-sm">
+                    <i class="fa-solid fa-user-gear"></i>
+                </div>
+                <h4 class="font-heading font-bold text-slate-800 text-lg mb-4">Account Setup</h4>
+                <ul class="space-y-3 text-sm text-slate-600">
+                    <li class="flex items-start"><i class="fa-solid fa-check text-brandBlue mt-0.5 mr-2"></i> Instagram account setup</li>
+                    <li class="flex items-start"><i class="fa-solid fa-check text-brandBlue mt-0.5 mr-2"></i> Facebook page setup</li>
+                    <li class="flex items-start"><i class="fa-solid fa-check text-brandBlue mt-0.5 mr-2"></i> LinkedIn business page setup</li>
+                    <li class="flex items-start"><i class="fa-solid fa-check text-brandBlue mt-0.5 mr-2"></i> YouTube channel setup</li>
+                </ul>
+            </div>
+
+            <!-- Captions & Hashtags -->
+            <div class="service-card animate-on-scroll delay-200 bg-white rounded-2xl p-6 md:p-8">
+                <div class="w-14 h-14 rounded-full bg-green-50 text-brandGreen flex items-center justify-center text-2xl mb-6 shadow-sm">
+                    <i class="fa-solid fa-hashtag"></i>
+                </div>
+                <h4 class="font-heading font-bold text-slate-800 text-lg mb-4">Captions & Hashtags</h4>
+                <ul class="space-y-3 text-sm text-slate-600">
+                    <li class="flex items-start"><i class="fa-solid fa-check text-brandGreen mt-0.5 mr-2"></i> SEO-friendly captions</li>
+                    <li class="flex items-start"><i class="fa-solid fa-check text-brandGreen mt-0.5 mr-2"></i> Trending hashtags research</li>
+                    <li class="flex items-start"><i class="fa-solid fa-check text-brandGreen mt-0.5 mr-2"></i> Local audience targeting</li>
+                </ul>
+            </div>
+
+            <!-- Engagement -->
+            <div class="service-card animate-on-scroll delay-300 bg-white rounded-2xl p-6 md:p-8">
+                <div class="w-14 h-14 rounded-full bg-purple-50 text-brandPurple flex items-center justify-center text-2xl mb-6 shadow-sm">
+                    <i class="fa-regular fa-comments"></i>
+                </div>
+                <h4 class="font-heading font-bold text-slate-800 text-lg mb-4">Engagement</h4>
+                <ul class="space-y-3 text-sm text-slate-600">
+                    <li class="flex items-start"><i class="fa-solid fa-check text-brandPurple mt-0.5 mr-2"></i> Replying to comments</li>
+                    <li class="flex items-start"><i class="fa-solid fa-check text-brandPurple mt-0.5 mr-2"></i> Replying to DMs</li>
+                    <li class="flex items-start"><i class="fa-solid fa-check text-brandPurple mt-0.5 mr-2"></i> Basic audience interaction</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Add-on Services Section -->
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+        
+        <!-- Section Header -->
+        <div class="text-center mb-12 animate-on-scroll">
+            <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-white shadow-md border border-gray-100 text-slate-600 text-xl mb-4 relative z-10">
+                <i class="fa-solid fa-plus"></i>
+            </div>
+            <!-- Decorative line behind plus -->
+            <div class="relative w-full max-w-xs mx-auto -mt-10 mb-8 border-t border-dashed border-gray-300 -z-10"></div>
+            
+            <h2 class="text-2xl md:text-3xl font-heading font-bold text-slate-800 mb-2 mt-4">Add-On Services</h2>
+            <p class="text-slate-500 text-sm">Customize your plan with these extras</p>
+        </div>
+
+        <!-- Addons Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+            
+            <!-- Logo Design -->
+            <div class="service-card animate-on-scroll delay-100 bg-white rounded-2xl p-5 flex flex-col items-center justify-center text-center h-full">
+                <div class="w-12 h-12 rounded-full bg-rose-50 text-rose-500 flex items-center justify-center text-xl mb-3">
+                    <i class="fa-solid fa-pen-nib"></i>
+                </div>
+                <h4 class="font-heading font-bold text-slate-700 text-sm mb-2">Logo Design</h4>
+                <div class="font-heading font-bold text-slate-800 text-xl mt-auto">₹499</div>
+            </div>
+
+            <!-- Poster Design -->
+            <div class="service-card animate-on-scroll delay-100 bg-white rounded-2xl p-5 flex flex-col items-center justify-center text-center h-full">
+                <div class="w-12 h-12 rounded-full bg-indigo-50 text-indigo-500 flex items-center justify-center text-xl mb-3">
+                    <i class="fa-regular fa-image"></i>
+                </div>
+                <h4 class="font-heading font-bold text-slate-700 text-sm mb-2">Poster Design</h4>
+                <div class="mt-auto">
+                    <span class="font-heading font-bold text-slate-800 text-xl">₹299</span>
+                    <span class="text-xs text-slate-500">/post</span>
+                </div>
+            </div>
+
+            <!-- Reel Editing -->
+            <div class="service-card animate-on-scroll delay-200 bg-white rounded-2xl p-5 flex flex-col items-center justify-center text-center h-full">
+                <div class="w-12 h-12 rounded-full bg-orange-50 text-orange-500 flex items-center justify-center text-xl mb-3">
+                    <i class="fa-solid fa-clapperboard"></i>
+                </div>
+                <h4 class="font-heading font-bold text-slate-700 text-sm mb-2">Reel Editing</h4>
+                <div class="mt-auto">
+                    <span class="font-heading font-bold text-slate-800 text-xl">₹399</span>
+                    <span class="text-xs text-slate-500">/reel</span>
+                </div>
+            </div>
+
+            <!-- Basic Long Video -->
+            <div class="service-card animate-on-scroll delay-200 bg-white rounded-2xl p-5 flex flex-col items-center justify-center text-center h-full">
+                <div class="w-12 h-12 rounded-full bg-teal-50 text-teal-500 flex items-center justify-center text-xl mb-3">
+                    <i class="fa-regular fa-circle-play"></i>
+                </div>
+                <h4 class="font-heading font-bold text-slate-700 text-sm mb-2">Basic Long Video</h4>
+                <div class="font-heading font-bold text-slate-800 text-xl mt-auto">₹599</div>
+            </div>
+
+            <!-- Advanced Long Video -->
+            <div class="service-card animate-on-scroll delay-300 bg-white rounded-2xl p-5 flex flex-col items-center justify-center text-center h-full sm:col-span-2 lg:col-span-1">
+                <div class="w-12 h-12 rounded-full bg-purple-50 text-brandPurple flex items-center justify-center text-xl mb-3">
+                    <i class="fa-solid fa-film"></i>
+                </div>
+                <h4 class="font-heading font-bold text-slate-700 text-sm mb-2">Advanced Long Video</h4>
+                <div class="font-heading font-bold text-slate-800 text-xl mt-auto">₹999</div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Why Choose Us / Trust Banner -->
+    <div class="max-w-6xl mx-auto px-4 pb-16 animate-on-scroll">
+        <div class="bg-white border border-slate-200 rounded-3xl p-8 md:p-10 shadow-sm">
+            
+            <div class="text-center mb-8">
+                <h3 class="font-heading font-bold text-slate-800 text-xl md:text-2xl">Why Choose AKSByte?</h3>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-center md:text-left">
+                
+                <div class="flex flex-col md:flex-row items-center md:items-start gap-4">
+                    <div class="w-10 h-10 rounded-full bg-blue-50 text-brandBlue flex items-center justify-center text-lg shrink-0">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-slate-800 font-bold text-sm mb-1">Experienced Team</h4>
+                        <p class="text-slate-500 text-xs">Skilled professionals dedicated to your brand.</p>
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row items-center md:items-start gap-4">
+                    <div class="w-10 h-10 rounded-full bg-green-50 text-brandGreen flex items-center justify-center text-lg shrink-0">
+                        <i class="fa-solid fa-arrow-trend-up"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-slate-800 font-bold text-sm mb-1">Result Driven</h4>
+                        <p class="text-slate-500 text-xs">Focused on engagement, leads & growth.</p>
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row items-center md:items-start gap-4">
+                    <div class="w-10 h-10 rounded-full bg-purple-50 text-brandPurple flex items-center justify-center text-lg shrink-0">
+                        <i class="fa-solid fa-gear"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-slate-800 font-bold text-sm mb-1">Transparent Process</h4>
+                        <p class="text-slate-500 text-xs">Clear reports and regular performance updates.</p>
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row items-center md:items-start gap-4">
+                    <div class="w-10 h-10 rounded-full bg-rose-50 text-rose-500 flex items-center justify-center text-lg shrink-0">
+                        <i class="fa-solid fa-hand-holding-dollar"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-slate-800 font-bold text-sm mb-1">Affordable Pricing</h4>
+                        <p class="text-slate-500 text-xs">High-quality services that fit your budget.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript for Scroll Animations -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target); 
+                    }
+                });
+            }, observerOptions);
+
+            const animatedElements = document.querySelectorAll('.animate-on-scroll');
+            animatedElements.forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AKSByte Subscription Plans</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom Config for Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        darkBg: '#09101f', // Header background match
+                        brandBlue: '#2563eb',
+                        brandGreen: '#16a34a',
+                        brandPurple: '#9333ea',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Animations & Styles */
+        body {
+            background-color: #f8fafc;
+            overflow-x: hidden;
+        }
+
+        /* Hero Background Pattern */
+        .hero-pattern {
+            background-color: #09101f;
+            background-image: radial-gradient(#1e293b 1px, transparent 1px);
+            background-size: 30px 30px;
+            position: relative;
+        }
+        
+        /* Floating background circles for extra premium feel */
+        .hero-pattern::before, .hero-pattern::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(45deg, rgba(37, 99, 235, 0.2), rgba(147, 51, 234, 0.2));
+            filter: blur(60px);
+            z-index: 0;
+        }
+        .hero-pattern::before {
+            width: 300px; height: 300px;
+            top: -100px; left: -100px;
+        }
+        .hero-pattern::after {
+            width: 400px; height: 400px;
+            bottom: -150px; right: -100px;
+        }
+
+        .relative-z {
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Scroll Animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Delays for staggered effect */
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; }
+        .delay-400 { transition-delay: 400ms; }
+        
+        /* Smooth Card Hover Effects */
+        .pricing-card {
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.1);
+        }
+        
+        /* Most Popular Card Specific */
+        @media (min-width: 1024px) {
+            .card-popular {
+                transform: scale(1.05);
+                z-index: 20;
+            }
+            .card-popular:hover {
+                transform: scale(1.05) translateY(-8px);
+            }
+        }
+
+        /* Additional Services Cards */
+        .service-card {
+            transition: all 0.3s ease;
+            border: 1px solid #e2e8f0;
+        }
+        .service-card:hover {
+            border-color: #cbd5e1;
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05);
+            transform: translateY(-3px);
+        }
+
+        /* List Items Styling */
+        .feature-list li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            color: #334155;
+            font-size: 0.95rem;
+        }
+        .feature-list i {
+            margin-top: 0.25rem;
+            margin-right: 0.75rem;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased text-slate-800 selection:bg-brandBlue selection:text-white">
+
+    <!-- Header Section -->
+    <header class="hero-pattern pt-20 pb-40 px-6 text-center overflow-hidden">
+        <div class="relative-z max-w-4xl mx-auto animate-on-scroll">
+            <h2 class="text-brandBlue font-heading font-bold tracking-widest uppercase text-sm md:text-base mb-2">AKSBytes</h2>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-white mb-6">Custom Web Applications</h1>
+            <p class="text-slate-300 text-lg md:text-xl max-w-2xl mx-auto font-light">Subscription Plans</p>
+        </div>
+    </header>
+
+    <!-- Pricing Cards Section -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-28 relative z-20 pb-20">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-start">
+
+            <!-- Basic Plan -->
+            <div class="pricing-card animate-on-scroll delay-100 bg-white rounded-3xl p-8 shadow-xl border border-slate-100 flex flex-col h-full">
+                <div class="text-center mb-8">
+                    <div class="w-20 h-20 mx-auto bg-blue-50 rounded-full flex items-center justify-center mb-4 text-brandBlue text-3xl">
+                        <i class="fa-solid fa-rocket"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-slate-800 text-xl mb-1">AKSBytes</h3>
+                    <h2 class="font-heading font-bold text-brandBlue text-3xl mb-4">Basic</h2>
+                    <div class="flex items-baseline justify-center text-slate-800 font-heading">
+                        <span class="text-4xl font-bold tracking-tight">₹149</span>
+                        <span class="text-slate-500 ml-1">/month</span>
+                    </div>
+                    <div class="mt-4 bg-blue-50 text-brandBlue text-sm font-medium py-2 px-4 rounded-lg inline-block border border-blue-100">
+                        Best plan for startup
+                    </div>
+                </div>
+
+                <ul class="feature-list flex-1 mb-8">
+                    <li><i class="fa-solid fa-circle-check text-brandBlue"></i> Full software access</li>
+                    <li><i class="fa-solid fa-circle-check text-brandBlue"></i> Bug fixes included</li>
+                    <li><i class="fa-solid fa-circle-check text-brandBlue"></i> Basic support</li>
+                    <li><i class="fa-solid fa-circle-check text-brandBlue"></i> One-time training <br> <span class="text-slate-500 text-sm">(1 week, 1 hour/day)</span></li>
+                </ul>
+
+                <button class="w-full bg-brandBlue hover:bg-blue-700 text-white font-semibold py-3.5 rounded-xl transition-colors duration-300 shadow-lg shadow-blue-500/30">
+                    Choose Basic
+                </button>
+            </div>
+
+            <!-- Growth Plan (Most Popular) -->
+            <div class="pricing-card card-popular animate-on-scroll delay-200 bg-white rounded-3xl p-8 shadow-2xl border-2 border-brandGreen flex flex-col h-full relative">
+                <!-- Most Popular Badge -->
+                <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-brandGreen text-white font-bold text-xs uppercase tracking-wider py-1.5 px-4 rounded-full shadow-md z-10 whitespace-nowrap">
+                    MOST POPULAR
+                </div>
+
+                <div class="text-center mb-8">
+                    <div class="w-20 h-20 mx-auto bg-green-50 rounded-full flex items-center justify-center mb-4 text-brandGreen text-3xl">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-slate-800 text-xl mb-1">AKSBytes</h3>
+                    <h2 class="font-heading font-bold text-brandGreen text-3xl mb-4">Growth</h2>
+                    <div class="flex items-baseline justify-center text-slate-800 font-heading">
+                        <span class="text-4xl font-bold tracking-tight">₹399</span>
+                        <span class="text-slate-500 ml-1">/month</span>
+                    </div>
+                    <div class="mt-4 bg-green-50 text-brandGreen text-sm font-medium py-2 px-4 rounded-lg inline-block border border-green-100">
+                        Best for growing businesses
+                    </div>
+                </div>
+
+                <ul class="feature-list flex-1 mb-8">
+                    <li><i class="fa-solid fa-circle-check text-brandGreen"></i> Full software access</li>
+                    <li><i class="fa-solid fa-circle-check text-brandGreen"></i> Bug fixes included</li>
+                    <li><i class="fa-solid fa-circle-check text-brandGreen"></i> Multiple staff training <br> <span class="text-slate-500 text-sm">(1 week, 1 hour/day)</span></li>
+                    <li><i class="fa-solid fa-circle-check text-brandGreen"></i> Priority support</li>
+                    <li><i class="fa-solid fa-circle-check text-brandGreen"></i> Minor Feature Updates</li>
+                    <li><i class="fa-solid fa-circle-check text-brandGreen"></i> Data Migration</li>
+                    <li><i class="fa-solid fa-circle-check text-brandGreen"></i> Personal Portfolio</li>
+                </ul>
+
+                <button class="w-full bg-brandGreen hover:bg-green-700 text-white font-semibold py-3.5 rounded-xl transition-colors duration-300 shadow-lg shadow-green-500/30">
+                    Choose Growth
+                </button>
+            </div>
+
+            <!-- Lifetime Plan -->
+            <div class="pricing-card animate-on-scroll delay-300 bg-white rounded-3xl p-8 shadow-xl border border-slate-100 flex flex-col h-full">
+                <div class="text-center mb-8">
+                    <div class="w-20 h-20 mx-auto bg-purple-50 rounded-full flex items-center justify-center mb-4 text-brandPurple text-3xl">
+                        <i class="fa-solid fa-crown"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-slate-800 text-xl mb-1">AKSBytes</h3>
+                    <h2 class="font-heading font-bold text-brandPurple text-3xl mb-4">Lifetime</h2>
+                    <div class="flex items-baseline justify-center text-slate-800 font-heading">
+                        <span class="text-4xl font-bold tracking-tight">₹4999</span>
+                    </div>
+                    <div class="text-slate-500 text-sm mt-1">one-time</div>
+                    <div class="mt-4 bg-purple-50 text-brandPurple text-sm font-medium py-2 px-4 rounded-lg inline-block border border-purple-100">
+                        One-time payment.<br>Use forever.
+                    </div>
+                </div>
+
+                <ul class="feature-list flex-1 mb-8">
+                    <li><i class="fa-solid fa-circle-check text-brandPurple"></i> Full software access</li>
+                    <li><i class="fa-solid fa-circle-check text-brandPurple"></i> One-time training <br> <span class="text-slate-500 text-sm">(1 week, 1 hour/day)</span></li>
+                    <li><i class="fa-solid fa-circle-check text-brandPurple"></i> 1 year free bug fixes</li>
+                    <li><i class="fa-solid fa-circle-check text-brandPurple"></i> Minor Feature Updates</li>
+                    <li><i class="fa-solid fa-circle-check text-brandPurple"></i> Data Migration</li>
+                    <li><i class="fa-solid fa-circle-check text-brandPurple"></i> Personal Portfolio</li>
+                </ul>
+
+                <button class="w-full bg-brandPurple hover:bg-purple-700 text-white font-semibold py-3.5 rounded-xl transition-colors duration-300 shadow-lg shadow-purple-500/30">
+                    Choose Lifetime
+                </button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Additional Services Section -->
+    <section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
+        
+        <!-- Section Header -->
+        <div class="text-center mb-12 animate-on-scroll">
+            <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-white shadow-md border border-gray-100 text-slate-600 text-xl mb-4 relative z-10">
+                <i class="fa-solid fa-gear"></i>
+            </div>
+            <!-- Decorative line behind gear -->
+            <div class="relative w-full max-w-xs mx-auto -mt-10 mb-8 border-t border-dashed border-gray-300 -z-10"></div>
+            
+            <h2 class="text-3xl font-heading font-bold text-slate-800 mb-2 mt-4">Additional Services</h2>
+            <p class="text-slate-500">Flexible add-ons to meet your business needs.</p>
+        </div>
+
+        <!-- Services Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            
+            <!-- Service 1: Extra Training -->
+            <div class="service-card animate-on-scroll delay-100 bg-white rounded-2xl p-6 flex items-center justify-between">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-full bg-blue-100 text-brandBlue flex items-center justify-center text-xl shrink-0">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-heading font-bold text-slate-800">Extra Training</h4>
+                        <p class="text-sm text-slate-500">1 hour/day</p>
+                    </div>
+                </div>
+                <div class="text-right shrink-0">
+                    <span class="font-heading font-bold text-brandBlue text-xl">₹500</span>
+                    <span class="text-xs text-brandBlue">/week</span>
+                </div>
+            </div>
+
+            <!-- Service 2: Simple Feature Add -->
+            <div class="service-card animate-on-scroll delay-200 bg-white rounded-2xl p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                <div class="flex items-start sm:items-center gap-4 w-full">
+                    <div class="w-12 h-12 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center text-xl shrink-0">
+                        <i class="fa-solid fa-plus"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="font-heading font-bold text-slate-800">Simple Feature Add</h4>
+                        <p class="text-xs text-slate-500 mb-1 mt-1">Examples:</p>
+                        <div class="flex flex-wrap gap-x-3 gap-y-1 text-xs text-slate-600">
+                            <span class="flex items-center gap-1"><span class="w-1 h-1 bg-slate-400 rounded-full"></span> Add extra field</span>
+                            <span class="flex items-center gap-1"><span class="w-1 h-1 bg-slate-400 rounded-full"></span> Change logo</span>
+                            <span class="flex items-center gap-1"><span class="w-1 h-1 bg-slate-400 rounded-full"></span> Add simple report</span>
+                            <span class="flex items-center gap-1"><span class="w-1 h-1 bg-slate-400 rounded-full"></span> Button changes</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-right shrink-0 self-start sm:self-center">
+                    <span class="font-heading font-bold text-indigo-600 text-xl">₹499</span>
+                </div>
+            </div>
+
+            <!-- Service 3: Complex Feature Add -->
+            <div class="service-card animate-on-scroll delay-300 bg-white rounded-2xl p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                <div class="flex items-start sm:items-center gap-4 w-full">
+                    <div class="w-12 h-12 rounded-full bg-green-100 text-brandGreen flex items-center justify-center text-xl shrink-0">
+                        <i class="fa-solid fa-puzzle-piece"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="font-heading font-bold text-slate-800">Complex Feature Add</h4>
+                        <p class="text-xs text-slate-500 mb-1 mt-1">Examples:</p>
+                        <div class="flex flex-wrap gap-x-3 gap-y-1 text-xs text-slate-600">
+                            <span class="flex items-center gap-1"><span class="w-1 h-1 bg-slate-400 rounded-full"></span> Payment integration</span>
+                            <span class="flex items-center gap-1"><span class="w-1 h-1 bg-slate-400 rounded-full"></span> New dashboard</span>
+                            <span class="flex items-center gap-1"><span class="w-1 h-1 bg-slate-400 rounded-full"></span> New attendance system</span>
+                            <span class="flex items-center gap-1"><span class="w-1 h-1 bg-slate-400 rounded-full"></span> New analytics module</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-right shrink-0 self-start sm:self-center">
+                    <span class="font-heading font-bold text-brandGreen text-xl">₹799</span><br>
+                    <span class="text-xs text-brandGreen">onwards</span>
+                </div>
+            </div>
+
+            <!-- Service 4: After Lifetime Bug Support -->
+            <div class="service-card animate-on-scroll delay-400 bg-white rounded-2xl p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                <div class="flex items-start sm:items-center gap-4 w-full">
+                    <div class="w-12 h-12 rounded-full bg-orange-100 text-orange-500 flex items-center justify-center text-xl shrink-0">
+                        <i class="fa-solid fa-wrench"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="font-heading font-bold text-slate-800">After Lifetime Bug Support Ends</h4>
+                        <div class="mt-1 space-y-0.5">
+                            <p class="text-sm text-slate-600">₹199 per issue</p>
+                            <p class="text-xs text-slate-400 font-bold">OR</p>
+                            <p class="text-sm text-slate-600">₹999/year maintenance plan</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-right shrink-0 self-start sm:self-center">
+                    <span class="font-heading font-bold text-orange-500 text-xl">₹199</span><br>
+                    <span class="text-xs text-slate-500 font-bold">OR</span><br>
+                    <span class="font-heading font-bold text-orange-500 text-xl">₹999</span><span class="text-xs text-orange-500">/year</span>
+                </div>
+            </div>
+
+            <!-- Service 5: Custom Branding -->
+            <div class="service-card animate-on-scroll delay-100 bg-white rounded-2xl p-6 flex items-center justify-between">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-full bg-rose-100 text-rose-500 flex items-center justify-center text-xl shrink-0">
+                        <i class="fa-solid fa-paint-roller"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-heading font-bold text-slate-800">Custom Branding</h4>
+                        <p class="text-sm text-slate-500 mt-1">If someone wants:<br><span class="text-slate-600">their logo, their brand colors</span></p>
+                    </div>
+                </div>
+                <div class="text-right shrink-0">
+                    <span class="font-heading font-bold text-rose-500 text-xl">₹499</span>
+                </div>
+            </div>
+
+            <!-- Service 6: Data Migration -->
+            <div class="service-card animate-on-scroll delay-200 bg-white rounded-2xl p-6 flex items-center justify-between">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-full bg-teal-100 text-teal-500 flex items-center justify-center text-xl shrink-0">
+                        <i class="fa-solid fa-database"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-heading font-bold text-slate-800">Data Migration</h4>
+                        <p class="text-sm text-slate-500 mt-1">Transfer your data<br><span class="text-slate-600">to you database/ file to software</span></p>
+                    </div>
+                </div>
+                <div class="text-right shrink-0">
+                    <span class="font-heading font-bold text-teal-500 text-xl">₹999</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer Trust Banner -->
+    <div class="max-w-4xl mx-auto px-4 pb-12 text-center animate-on-scroll">
+        <div class="inline-flex flex-col sm:flex-row items-center justify-center gap-3 bg-blue-50/50 border border-blue-100 rounded-2xl py-4 px-6 md:px-8 shadow-sm">
+            <i class="fa-solid fa-shield-halved text-brandBlue text-xl"></i>
+            <span class="text-brandBlue font-medium text-sm md:text-base">We are committed to providing reliable support and the best experience for your business.</span>
+        </div>
+    </div>
+
+    <!-- JavaScript for Scroll Animations -->
+    <script>
+        // Use Intersection Observer API to trigger animations when elements come into view
+        document.addEventListener("DOMContentLoaded", () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15 // Trigger when 15% of the element is visible
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        // Stop observing once it's visible so animation only happens once
+                        observer.unobserve(entry.target); 
+                    }
+                });
+            }, observerOptions);
+
+            const animatedElements = document.querySelectorAll('.animate-on-scroll');
+            animatedElements.forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>
