@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>AKS Classes - Professional Education Platform</title>
+    <meta content="AKS Classes - Aim For Knowledge, Spark up your Career" name="description" />
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome & Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Open Sans', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            light: '#e0f2fe', // sky-100
+                            DEFAULT: '#0284c7', // sky-600
+                            dark: '#0369a1', // sky-700
+                            accent: '#38bdf8', // sky-400
+                        },
+                        text: {
+                            main: '#334155', // slate-700
+                            light: '#64748b', // slate-500
+                            heading: '#0f172a', // slate-900
+                        }
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 40px -10px rgba(0,0,0,0.08)',
+                        'floating': '0 20px 40px -15px rgba(2, 132, 199, 0.2)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS for Animations and Specific UI details -->
+    <style>
+        /* Pure white nahi, thoda off-white shade rakha hai */
+        body { color: #334155; background-color: #f1f5f9; } 
+        
+        /* Smooth Fade In Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hero Video Overlay - Thoda aur transparent kiya hai taaki piche ka img clear dikhe */
+        .video-overlay {
+            background: linear-gradient(to right, rgba(241,245,249,0.92) 0%, rgba(241,245,249,0.3) 100%);
+        }
+
+        /* Dropdown Mega Menu (Tailwind adaptation) */
+        .mega-menu { display: none; }
+        .group:hover .mega-menu { display: block; }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+        /* Card Hover Effects */
+        .hover-card { transition: all 0.3s ease; }
+        .hover-card:hover { 
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+    </style>
+</head>
+<body class="antialiased overflow-x-hidden selection:bg-brand-accent selection:text-white">
+
+    <!-- HEADER / NAVBAR -->
+    <header id="header" class="fixed w-full z-50 transition-all duration-300 bg-white shadow-sm py-3">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center">
+                
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-2">
+                    <img src="../img/AKSByte_Logo.png" alt="AKSBytes Logo" class="h-10 md:h-12 object-contain" onerror="this.src='https://placehold.co/240x60/0284c7/ffffff?text=AKS+Classes'">
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden lg:flex items-center space-x-8 font-heading font-medium text-sm">
+                    <a href="#" class="text-brand hover:text-brand-dark transition">Home</a>
+                    <a href="#about" class="text-text-main hover:text-brand transition">About</a>
+                    
+                    <!-- Courses Mega Menu -->
+                    <div class="relative group py-4 cursor-pointer">
+                        <span class="text-text-main hover:text-brand transition flex items-center gap-1">
+                            Courses <i class="bi bi-chevron-down text-xs"></i>
+                        </span>
+                        
+                        <!-- Mega Menu Content -->
+                        <div class="mega-menu absolute top-full left-1/2 -translate-x-1/2 w-[800px] bg-white rounded-xl shadow-xl border border-gray-100 p-6 z-50">
+                            <div class="grid grid-cols-3 gap-8">
+                                <!-- Column 1 -->
+                                <div class="space-y-3">
+                                    <h4 class="text-brand font-bold uppercase text-xs tracking-wider mb-2 border-b pb-2">Technology & Web</h4>
+                                    <a href="#" class="block text-text-main hover:text-brand text-sm transition">Cyber Security & Ethical Hacking</a>
+                                    <a href="#" class="block text-text-main hover:text-brand text-sm transition">Full Stack Web Development</a>
+                                    <a href="#" class="block text-text-main hover:text-brand text-sm transition">Cloud Computing (AWS/Azure)</a>
+                                    <a href="#" class="block text-text-main hover:text-brand text-sm transition">Hardware & Networking</a>
+                                </div>
+                                <!-- Column 2 -->
+                                <div class="space-y-3">
+                                    <h4 class="text-brand font-bold uppercase text-xs tracking-wider mb-2 border-b pb-2">Data & Analytics</h4>
+                                    <a href="#" class="block text-text-main hover:text-brand text-sm transition">Data Science Pipeline</a>
+                                    <a href="#" class="block text-text-main hover:text-brand text-sm transition">Data Analytics (PowerBI/Tableau)</a>
+                                    <a href="#" class="block text-text-main hover:text-brand text-sm transition">Programming (Python, Java, C++)</a>
+                                    <a href="#" class="block text-text-main hover:text-brand text-sm transition">Software Testing (QA/Automation)</a>
+                                </div>
+                                <!-- Column 3 -->
+                                <div class="space-y-3">
+                                    <h4 class="text-brand font-bold uppercase text-xs tracking-wider mb-2 border-b pb-2">Design & ERP</h4>
+                                    <a href="#" class="block text-text-main hover:text-brand text-sm transition">Digital Marketing Masterclass</a>
+                                    <a href="#" class="block text-text-main hover:text-brand text-sm transition">SAP FICO & SAP MM</a>
+                                    <a href="#" class="block text-text-main hover:text-brand text-sm transition">Civil & Mechanical CAD</a>
+                                    <a href="#" class="block text-text-main hover:text-brand text-sm transition">Advance Finance Analyst</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <a href="#gallery" class="text-text-main hover:text-brand transition">Gallery</a>
+                    <a href="#contact" class="bg-brand text-white px-5 py-2.5 rounded-full hover:bg-brand-dark transition shadow-floating">
+                        Contact Us
+                    </a>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="lg:hidden text-2xl text-text-main focus:outline-none">
+                    <i class="bi bi-list"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Navigation (Hidden by default) -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t mt-3 p-4 absolute w-full shadow-lg">
+            <div class="flex flex-col space-y-4 font-medium">
+                <a href="#" class="text-brand">Home</a>
+                <a href="#about" class="text-text-main">About</a>
+                <a href="#courses" class="text-text-main">Courses</a>
+                <a href="#gallery" class="text-text-main">Gallery</a>
+                <a href="#contact" class="text-text-main">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="hero" class="relative pt-24 pb-16 lg:pt-32 lg:pb-24 min-h-[90vh] flex items-center">
+        <!-- Background Video/Image Concept -->
+        <div class="absolute inset-0 z-0 overflow-hidden">
+            <!-- Using an online placeholder image as video alternative for demo -->
+            <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="Students learning" class="w-full h-full object-cover">
+            <div class="absolute inset-0 video-overlay"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                
+                <!-- Hero Text -->
+                <div class="reveal active">
+                    <!-- Class Logo taking large space -->
+                    <img src="../img/AKSByte_Logo.png" alt="AKS Classes Big Logo" class="w-full max-w-[350px] md:max-w-[480px] mb-4 object-contain drop-shadow-md" onerror="this.src='https://placehold.co/480x150/0284c7/ffffff?text=AKS+Classes+Logo'">
+                    
+                    <!-- Big Font Class Name -->
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-text-heading leading-tight mb-4">
+                        AKS Classes
+                    </h1>
+                    
+                    <!-- Description -->
+                    <p class="text-lg text-text-heading font-medium mb-8 max-w-lg leading-relaxed drop-shadow-sm">
+                        A great career is what we promise. Join our expert-led courses and transform your skills to meet industry demands.
+                    </p>
+                    
+                    <!-- Action Buttons -->
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#popular-courses" class="bg-brand text-white px-8 py-3.5 rounded-full font-semibold hover:bg-brand-dark transition shadow-floating">
+                            Explore Courses
+                        </a>
+                        <a href="#testimonials" class="bg-white text-text-heading border border-gray-200 px-8 py-3.5 rounded-full font-semibold hover:bg-gray-50 transition flex items-center gap-2">
+                            Student Success <i class="bi bi-arrow-down"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Demo Request Form -->
+                <div class="reveal active delay-200">
+                    <div class="bg-white p-8 rounded-2xl shadow-soft border border-gray-100 relative overflow-hidden">
+                        <!-- Decorative element -->
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-brand-light rounded-bl-full -z-10 opacity-50"></div>
+                        
+                        <h3 class="text-2xl font-heading font-bold text-text-heading mb-2">Request Demo Lecture</h3>
+                        <p class="text-text-light text-sm mb-6">Fill out the form below and our counselors will get in touch.</p>
+                        
+                        <form id="demoForm" class="space-y-4">
+                            <div>
+                                <input type="text" required placeholder="Full Name" class="w-full bg-gray-50 border border-gray-200 text-text-main rounded-lg px-4 py-3 focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand transition">
+                            </div>
+                            <div>
+                                <input type="tel" required placeholder="Mobile Number" class="w-full bg-gray-50 border border-gray-200 text-text-main rounded-lg px-4 py-3 focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand transition">
+                            </div>
+                            <div>
+                                <input type="email" required placeholder="Email Address" class="w-full bg-gray-50 border border-gray-200 text-text-main rounded-lg px-4 py-3 focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand transition">
+                            </div>
+                            <div>
+                                <select class="w-full bg-gray-50 border border-gray-200 text-text-main rounded-lg px-4 py-3 focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand transition appearance-none">
+                                    <option value="" disabled selected>Interested Course</option>
+                                    <option>Data Science</option>
+                                    <option>Full Stack Web</option>
+                                    <option>Cyber Security</option>
+                                    <option>Digital Marketing</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="w-full bg-text-heading text-white font-semibold py-3.5 rounded-lg hover:bg-black transition mt-2">
+                                Register Now
+                            </button>
+                            <p id="demoSuccess" class="hidden text-green-600 text-sm text-center mt-3 font-medium"><i class="bi bi-check-circle"></i> Request submitted successfully!</p>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <!-- Image Side -->
+                <div class="reveal relative">
+                    <div class="absolute -inset-4 bg-brand-light rounded-[3rem] transform -rotate-3 -z-10"></div>
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Students collaborating" class="rounded-[2.5rem] shadow-soft w-full h-auto object-cover border-4 border-white">
+                    
+                    <!-- Floating Badge -->
+                    <div class="absolute -bottom-6 -right-6 bg-white p-4 rounded-xl shadow-floating border border-gray-100 flex items-center gap-3">
+                        <div class="w-12 h-12 bg-brand rounded-full flex items-center justify-center text-white text-xl">
+                            <i class="bi bi-award-fill"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-text-heading text-lg">Est. 1999</h4>
+                            <p class="text-xs text-text-light">Years of Excellence</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Content Side -->
+                <div class="reveal">
+                    <span class="text-brand font-semibold tracking-wider uppercase text-sm mb-2 block">About Us</span>
+                    <h2 class="text-3xl md:text-4xl font-heading font-bold text-text-heading mb-6 leading-tight">
+                        Where your career aspirations become reality!
+                    </h2>
+                    <p class="text-text-light leading-relaxed mb-6">
+                        <strong class="text-brand">AKS Classes</strong>, established in 1999, offers a comprehensive range of programs in Cyber Security, Networking, Data Science, Data Analytics, CAD, CAM, alongside specialized courses in Accounts & Finance, SAP Modules, and Digital Marketing.
+                    </p>
+                    <p class="text-text-light leading-relaxed mb-8">
+                        With a robust curriculum, state-of-the-art infrastructure, and a team of experienced faculty, we have been consistently producing industry-ready professionals. Our institute has strong ties with numerous industry leaders, ensuring you get the best practical exposure.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-6 border-t border-gray-100 pt-8">
+                        <div class="flex items-start gap-3">
+                            <div class="text-brand text-2xl mt-1"><i class="bi bi-check-circle-fill"></i></div>
+                            <div>
+                                <h4 class="font-bold text-text-heading">Expert Faculty</h4>
+                                <p class="text-sm text-text-light">Industry professionals</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="text-brand text-2xl mt-1"><i class="bi bi-check-circle-fill"></i></div>
+                            <div>
+                                <h4 class="font-bold text-text-heading">100% Placement</h4>
+                                <p class="text-sm text-text-light">Dedicated assistance</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MISSION & STATS SECTION -->
+    <section class="py-20 bg-brand-light/30 border-y border-brand-light">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+                <!-- Stat 1 -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 text-center reveal">
+                    <div class="text-brand text-4xl mb-3"><i class="bi bi-people"></i></div>
+                    <h3 class="text-4xl font-heading font-bold text-text-heading mb-1">1200+</h3>
+                    <p class="text-text-light font-medium">Students Enrolled</p>
+                </div>
+                <!-- Stat 2 -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 text-center reveal delay-100">
+                    <div class="text-brand text-4xl mb-3"><i class="bi bi-book"></i></div>
+                    <h3 class="text-4xl font-heading font-bold text-text-heading mb-1">45+</h3>
+                    <p class="text-text-light font-medium">Professional Courses</p>
+                </div>
+                <!-- Stat 3 -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 text-center reveal delay-200">
+                    <div class="text-brand text-4xl mb-3"><i class="bi bi-calendar-event"></i></div>
+                    <h3 class="text-4xl font-heading font-bold text-text-heading mb-1">100+</h3>
+                    <p class="text-text-light font-medium">Workshops Held</p>
+                </div>
+                <!-- Stat 4 -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 text-center reveal delay-300">
+                    <div class="text-brand text-4xl mb-3"><i class="bi bi-person-badge"></i></div>
+                    <h3 class="text-4xl font-heading font-bold text-text-heading mb-1">25+</h3>
+                    <p class="text-text-light font-medium">Expert Trainers</p>
+                </div>
+            </div>
+
+            <!-- Mission -->
+            <div class="bg-white rounded-3xl shadow-soft p-8 md:p-12 border border-gray-100 reveal">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h2 class="text-3xl font-heading font-bold text-text-heading mb-6">Our Mission</h2>
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-3">
+                                <i class="bi bi-arrow-right-circle-fill text-brand mt-1"></i>
+                                <span class="text-text-light leading-relaxed">Empower individuals with skills, knowledge, and confidence for today's competitive job market.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="bi bi-arrow-right-circle-fill text-brand mt-1"></i>
+                                <span class="text-text-light leading-relaxed">Foster a supportive learning environment that encourages continuous personal and professional growth.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="bi bi-arrow-right-circle-fill text-brand mt-1"></i>
+                                <span class="text-text-light leading-relaxed">Promote innovation in learning methodologies.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="bi bi-arrow-right-circle-fill text-brand mt-1"></i>
+                                <span class="text-text-light leading-relaxed">Commit deeply to excellence in IT and management education.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Mission Strategy" class="rounded-2xl w-full h-auto object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHY CHOOSE US -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <span class="text-brand font-semibold tracking-wider uppercase text-sm mb-2 block">Features</span>
+                <h2 class="text-3xl md:text-4xl font-heading font-bold text-text-heading">Why Choose AKS Classes?</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="bg-gray-50 p-8 rounded-2xl border border-gray-100 hover-card reveal">
+                    <div class="w-14 h-14 bg-white rounded-xl shadow-sm flex items-center justify-center text-brand text-2xl mb-6">
+                        <i class="bi bi-briefcase"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-text-heading mb-3">Employability Skills</h3>
+                    <p class="text-text-light text-sm leading-relaxed">
+                        We emphasize imparting required skills like English, communication, and personality development to make you job-ready.
+                    </p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="bg-gray-50 p-8 rounded-2xl border border-gray-100 hover-card reveal delay-100">
+                    <div class="w-14 h-14 bg-white rounded-xl shadow-sm flex items-center justify-center text-brand text-2xl mb-6">
+                        <i class="bi bi-person-workspace"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-text-heading mb-3">Expert Faculty</h3>
+                    <p class="text-text-light text-sm leading-relaxed">
+                        Our curriculum is designed and delivered by expert faculty who come with extensive industry exposure and knowledge.
+                    </p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="bg-gray-50 p-8 rounded-2xl border border-gray-100 hover-card reveal delay-200">
+                    <div class="w-14 h-14 bg-white rounded-xl shadow-sm flex items-center justify-center text-brand text-2xl mb-6">
+                        <i class="bi bi-graph-up-arrow"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-text-heading mb-3">Placement Assistance</h3>
+                    <p class="text-text-light text-sm leading-relaxed">
+                        We provide quality education leading to excellent job placements through our dedicated and active Placement Team.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- POPULAR COURSES -->
+    <section id="popular-courses" class="py-20 bg-gray-50 border-t border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-end mb-12 reveal">
+                <div>
+                    <span class="text-brand font-semibold tracking-wider uppercase text-sm mb-2 block">Our Curriculum</span>
+                    <h2 class="text-3xl md:text-4xl font-heading font-bold text-text-heading">Popular Courses</h2>
+                </div>
+                <a href="#" class="hidden md:inline-flex items-center gap-2 text-brand font-semibold hover:text-brand-dark transition">
+                    View All Courses <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Course 1 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-soft border border-gray-100 hover-card reveal group">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Data Science" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-brand">Best Seller</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-text-heading mb-2"><a href="#" class="hover:text-brand transition">Data Science Pipeline</a></h3>
+                        <p class="text-text-light text-sm mb-6 line-clamp-3">
+                            Accelerate your career in Data Science. Learn world-class techniques, machine learning algorithms, and real-world implementation to become successful.
+                        </p>
+                        <div class="flex items-center justify-between border-t border-gray-100 pt-4">
+                            <span class="text-sm font-medium text-text-main"><i class="bi bi-clock text-brand mr-1"></i> 6 Months</span>
+                            <a href="#" class="text-sm font-semibold text-brand hover:underline">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course 2 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-soft border border-gray-100 hover-card reveal delay-100 group">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Data Analytics" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-text-heading mb-2"><a href="#" class="hover:text-brand transition">Advanced Data Analytics</a></h3>
+                        <p class="text-text-light text-sm mb-6 line-clamp-3">
+                            Transform into an analytics expert. Master SQL databases, Python, PowerBI, and Tableau to extract meaningful insights from raw data.
+                        </p>
+                        <div class="flex items-center justify-between border-t border-gray-100 pt-4">
+                            <span class="text-sm font-medium text-text-main"><i class="bi bi-clock text-brand mr-1"></i> 4 Months</span>
+                            <a href="#" class="text-sm font-semibold text-brand hover:underline">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course 3 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-soft border border-gray-100 hover-card reveal delay-200 group">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Cyber Security" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute top-4 right-4 bg-red-100 text-red-600 px-3 py-1 rounded-full text-xs font-bold">Trending</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-text-heading mb-2"><a href="#" class="hover:text-brand transition">Cyber Security & Ethical Hacking</a></h3>
+                        <p class="text-text-light text-sm mb-6 line-clamp-3">
+                            Learn to assess security postures like a pro. Understand vulnerabilities, network security, and lawful hacking techniques to protect systems.
+                        </p>
+                        <div class="flex items-center justify-between border-t border-gray-100 pt-4">
+                            <span class="text-sm font-medium text-text-main"><i class="bi bi-clock text-brand mr-1"></i> 5 Months</span>
+                            <a href="#" class="text-sm font-semibold text-brand hover:underline">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-10 text-center md:hidden">
+                <a href="#" class="inline-flex items-center gap-2 text-brand font-semibold">
+                    View All Courses <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section id="testimonials" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <span class="text-brand font-semibold tracking-wider uppercase text-sm mb-2 block">Student Success</span>
+                <h2 class="text-3xl md:text-4xl font-heading font-bold text-text-heading">What Our Alumni Say</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-gray-50 p-8 rounded-2xl relative reveal">
+                    <i class="bi bi-quote absolute top-6 right-6 text-6xl text-gray-200 opacity-50"></i>
+                    <div class="flex items-center gap-4 mb-6">
+                        <img src="https://i.pravatar.cc/150?img=47" alt="Divya" class="w-14 h-14 rounded-full object-cover border-2 border-brand/20">
+                        <div>
+                            <h4 class="font-bold text-text-heading">Divya Sharma</h4>
+                            <p class="text-xs text-brand font-medium">Data Analytics</p>
+                        </div>
+                    </div>
+                    <p class="text-text-light text-sm leading-relaxed italic">
+                        "AKS Classes has great teachers and the courses are extremely informative. I've learnt Adv. Excel, Python, and Tableau and the teaching was extremely easy to understand. We were given projects that are at par with real life."
+                    </p>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="bg-gray-50 p-8 rounded-2xl relative reveal delay-100">
+                    <i class="bi bi-quote absolute top-6 right-6 text-6xl text-gray-200 opacity-50"></i>
+                    <div class="flex items-center gap-4 mb-6">
+                        <img src="https://i.pravatar.cc/150?img=32" alt="Ekta" class="w-14 h-14 rounded-full object-cover border-2 border-brand/20">
+                        <div>
+                            <h4 class="font-bold text-text-heading">Ekta Verma</h4>
+                            <p class="text-xs text-brand font-medium">Data Science</p>
+                        </div>
+                    </div>
+                    <p class="text-text-light text-sm leading-relaxed italic">
+                        "I am glad to have chosen this institute. The courses in data science are detailed and thorough. The instructors pay close attention to every aspect of the curriculum, ensuring comprehensive coverage for interviews."
+                    </p>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="bg-gray-50 p-8 rounded-2xl relative reveal delay-200">
+                    <i class="bi bi-quote absolute top-6 right-6 text-6xl text-gray-200 opacity-50"></i>
+                    <div class="flex items-center gap-4 mb-6">
+                        <img src="https://i.pravatar.cc/150?img=12" alt="Pooja" class="w-14 h-14 rounded-full object-cover border-2 border-brand/20">
+                        <div>
+                            <h4 class="font-bold text-text-heading">Pooja Patel</h4>
+                            <p class="text-xs text-brand font-medium">Python Developer</p>
+                        </div>
+                    </div>
+                    <p class="text-text-light text-sm leading-relaxed italic">
+                        "My time at AKS Classes has been incredibly rewarding. I am thrilled to accept the position of Python Developer, and I owe much of my growth to the exceptional resources and support provided by the faculty."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="contact" class="bg-text-heading text-gray-300 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                
+                <!-- Brand Info -->
+                <div class="lg:col-span-1">
+                    <img src="../img/AKSByte_Logo.png" alt="AKS Classes" class="h-12 mb-6  rounded px-2" onerror="this.src='https://placehold.co/200x50/ffffff/0f172a?text=AKS+Classes'">
+                    <p class="text-sm text-gray-400 mb-6 leading-relaxed">
+                        Aim For Knowledge, Spark up your Career. Providing premium education and professional training since 1999.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand hover:text-white transition"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand hover:text-white transition"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand hover:text-white transition"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand hover:text-white transition"><i class="bi bi-youtube"></i></a>
+                    </div>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h4 class="text-white font-bold mb-6 text-lg">Head Office</h4>
+                    <ul class="space-y-4 text-sm text-gray-400">
+                        <li class="flex items-start gap-3">
+                            <i class="bi bi-geo-alt-fill text-brand mt-1"></i>
+                            <span>123, Tech Knowledge Building,<br>Main Road, City Center,<br>New Delhi, 110001</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="bi bi-telephone-fill text-brand"></i>
+                            <span>+91 98765 43210</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="bi bi-envelope-fill text-brand"></i>
+                            <span>info@aksclasses.com</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-white font-bold mb-6 text-lg">Quick Links</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="#" class="hover:text-brand transition flex items-center gap-2"><i class="bi bi-chevron-right text-xs"></i> Home</a></li>
+                        <li><a href="#about" class="hover:text-brand transition flex items-center gap-2"><i class="bi bi-chevron-right text-xs"></i> About Us</a></li>
+                        <li><a href="#popular-courses" class="hover:text-brand transition flex items-center gap-2"><i class="bi bi-chevron-right text-xs"></i> All Courses</a></li>
+                        <li><a href="#testimonials" class="hover:text-brand transition flex items-center gap-2"><i class="bi bi-chevron-right text-xs"></i> Placements</a></li>
+                        <li><a href="#contact" class="hover:text-brand transition flex items-center gap-2"><i class="bi bi-chevron-right text-xs"></i> Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div>
+                    <h4 class="text-white font-bold mb-6 text-lg">Newsletter</h4>
+                    <p class="text-sm text-gray-400 mb-4">Subscribe to get latest updates on new courses and batches.</p>
+                    <form class="flex flex-col gap-3" onsubmit="event.preventDefault(); alert('Subscribed successfully!');">
+                        <input type="email" placeholder="Your Email Address" required class="bg-white/10 border border-white/20 text-white px-4 py-2.5 rounded-lg focus:outline-none focus:border-brand w-full text-sm">
+                        <button type="submit" class="bg-brand hover:bg-brand-dark text-white px-4 py-2.5 rounded-lg font-medium transition text-sm w-full">
+                            Subscribe
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+
+            <div class="border-t border-white/10 pt-8 mt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
+                <p>&copy; 2026 AKS Classes. All Rights Reserved.</p>
+                <div class="mt-4 md:mt-0 space-x-4">
+                    <a href="#" class="hover:text-white transition">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to top button -->
+    <a href="#" id="backToTop" class="fixed bottom-6 right-6 bg-brand text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg opacity-0 pointer-events-none transition-all duration-300 hover:bg-brand-dark z-50">
+        <i class="bi bi-arrow-up"></i>
+    </a>
+
+    <!-- Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // Navbar Scroll Effect
+            const header = document.getElementById('header');
+            const backToTop = document.getElementById('backToTop');
+            
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('shadow-md');
+                    header.classList.remove('py-3');
+                    header.classList.add('py-2');
+                    
+                    backToTop.classList.remove('opacity-0', 'pointer-events-none');
+                    backToTop.classList.add('opacity-100', 'pointer-events-auto');
+                } else {
+                    header.classList.remove('shadow-md');
+                    header.classList.add('py-3');
+                    header.classList.remove('py-2');
+                    
+                    backToTop.classList.add('opacity-0', 'pointer-events-none');
+                    backToTop.classList.remove('opacity-100', 'pointer-events-auto');
+                }
+            });
+
+            // Mobile Menu Toggle
+            const mobileBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const icon = mobileBtn.querySelector('i');
+
+            mobileBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                if(mobileMenu.classList.contains('hidden')){
+                    icon.classList.remove('bi-x-lg');
+                    icon.classList.add('bi-list');
+                } else {
+                    icon.classList.remove('bi-list');
+                    icon.classList.add('bi-x-lg');
+                }
+            });
+
+            // Scroll Reveal Animation (Intersection Observer)
+            const revealElements = document.querySelectorAll('.reveal');
+            
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            });
+
+            revealElements.forEach(el => revealObserver.observe(el));
+
+            // Demo Form Submission Simulation
+            const demoForm = document.getElementById('demoForm');
+            const demoSuccess = document.getElementById('demoSuccess');
+            
+            if(demoForm) {
+                demoForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const btn = demoForm.querySelector('button');
+                    const originalText = btn.innerHTML;
+                    
+                    btn.innerHTML = '<i class="bi bi-hourglass-split animate-spin"></i> Processing...';
+                    btn.disabled = true;
+                    btn.classList.add('opacity-70');
+                    
+                    setTimeout(() => {
+                        btn.innerHTML = originalText;
+                        btn.disabled = false;
+                        btn.classList.remove('opacity-70');
+                        demoForm.reset();
+                        
+                        demoSuccess.classList.remove('hidden');
+                        setTimeout(() => {
+                            demoSuccess.classList.add('hidden');
+                        }, 4000);
+                    }, 1500);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
