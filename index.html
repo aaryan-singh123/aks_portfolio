@@ -5,16 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AKSBytes</title>
     
+    <!-- PERFORMANCE HACK: Preconnect to fonts and preload main logo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="img/AKSByte_Logo.png" as="image" fetchpriority="high">
+
     <!-- Fonts: Outfit for highly modern headings, Inter for clean body text -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
     
     <!-- AOS Animation Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- PERFORMANCE HACK: Defer script loading so it doesn't block HTML parsing -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
 
     <script>
         tailwind.config = {
@@ -60,7 +66,15 @@
     </script>
     
     <style>
-        body { background-color: #fafafa; color: #334155; overflow-x: hidden; }
+        body { 
+            background-color: #fafafa; 
+            color: #334155; 
+            overflow-x: hidden; 
+            /* PERFORMANCE HACK: Better text rendering */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+        }
         
         /* Stunning Animated Text Gradient */
         .text-animate-gradient {
@@ -80,6 +94,9 @@
         /* Modern Bento Card Hover */
         .bento-card {
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            /* PERFORMANCE HACK: Use GPU for smooth hover animations */
+            will-change: transform;
+            backface-visibility: hidden; 
         }
         .bento-card:hover {
             transform: translateY(-5px) scale(1.01);
@@ -92,6 +109,17 @@
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+            /* PERFORMANCE HACK: Hardware acceleration for fixed navbar */
+            transform: translateZ(0);
+        }
+
+        /* PERFORMANCE HACK: CSS content-visibility helps rendering long pages faster */
+        section {
+            content-visibility: auto;
+            contain-intrinsic-size: 1000px;
+        }
+        #home {
+            content-visibility: visible; /* Hero section hamesha visible rehna chahiye */
         }
     </style>
 </head>
@@ -115,8 +143,8 @@
             <div class="absolute w-64 h-64 md:w-80 md:h-80 border border-slate-100 rounded-full animate-[spin_12s_linear_infinite_reverse] border-b-pink-500 border-t-transparent border-l-transparent border-r-transparent opacity-70"></div>
         </div>
 
-        <!-- Logo -->
-        <img src="img/AKSByte_Logo.png" alt="AKSBytes Logo" class="relative z-10 h-32 md:h-40 object-contain animate-[pulse_2s_ease-in-out_infinite] mb-6">
+        <!-- Logo (fetchpriority added for instant load) -->
+        <img src="img/AKSByte_Logo.png" alt="AKSBytes Logo" fetchpriority="high" decoding="sync" class="relative z-10 h-32 md:h-40 object-contain animate-[pulse_2s_ease-in-out_infinite] mb-6">
         
         <div class="flex gap-3 relative z-10">
             <div class="w-3 h-3 bg-brand-primary rounded-full animate-bounce" style="animation-delay: 0s;"></div>
@@ -143,7 +171,7 @@
             <div class="flex justify-between items-center h-20">
                 <!-- Logo -->
                 <a href="#" class="flex items-center gap-2 group">
-                    <img src="img/AKSByte_Logo.png" alt="AKSByte Logo" class="h-16 w-auto object-contain group-hover:scale-105 transition-transform duration-300">
+                    <img src="img/AKSByte_Logo.png" alt="AKSByte Logo" fetchpriority="high" class="h-16 w-auto object-contain group-hover:scale-105 transition-transform duration-300">
                 </a>
                 
                 <!-- Desktop Menu -->
@@ -161,7 +189,7 @@
                 </div>
 
                 <!-- Mobile menu button -->
-                <button id="mobile-menu-btn" class="md:hidden text-brand-dark text-2xl focus:outline-none">
+                <button id="mobile-menu-btn" aria-label="Toggle Menu" class="md:hidden text-brand-dark text-2xl focus:outline-none">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
@@ -224,8 +252,7 @@
             <!-- Bento Grid Layout: Updated to 5-column grid for precise width control -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 auto-rows-[minmax(250px,auto)]">
                 
-                <!-- Large Card: Custom Web Apps (Takes 3 columns now instead of 2/3 width, making it slightly narrower) -->
-                <!-- Edited: Image is now banner style like social media handling -->
+                <!-- Large Card: Custom Web Apps -->
                 <div class="md:col-span-2 lg:col-span-3 bento-card bg-white rounded-[2rem] p-6 lg:p-8 border border-gray-100 shadow-sm relative overflow-hidden group flex flex-col justify-between" data-aos="fade-up" data-aos-delay="100">
                     <div class="absolute top-0 right-0 w-64 h-64 bg-indigo-50 rounded-full blur-[80px] -z-10 group-hover:bg-indigo-100 transition-colors"></div>
                     <div class="w-full z-10 flex-1 flex flex-col">
@@ -240,7 +267,6 @@
                         </div>
                         
                         <!-- View Plans Buttons -->
-                        <!-- Edited: Added target="_blank" -->
                         <div class="flex flex-wrap items-center gap-4 mt-6 mb-8">
                             <a href="Subscription_Plans/Custom_Web_Applications.html" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2.5 rounded-xl font-medium text-sm transition-all shadow-md shadow-indigo-500/20 group/btn">
                                 View Plans <i class="fas fa-arrow-right text-xs transform group-hover/btn:translate-x-1 transition-transform"></i>
@@ -251,13 +277,13 @@
                         </div>
                     </div>
                     
-                    <!-- Edited: Banner style image -->
+                    <!-- PERFORMANCE HACK: loading="lazy" and decoding="async" added to images below fold -->
                     <div class="w-full mt-auto h-52 md:h-64 xl:h-72 rounded-2xl bg-slate-50 border border-gray-100 overflow-hidden relative shadow-inner shrink-0 transition-transform duration-500 group-hover:shadow-lg z-10 hidden sm:block">
-                        <img src="img/Custom_Web_Applications.png" class="w-full h-full object-cover opacity-90 group-hover:scale-110 transition-all duration-700" alt="Web App Development">
+                        <img src="img/Custom_Web_Applications.png" loading="lazy" decoding="async" class="w-full h-full object-cover opacity-90 group-hover:scale-110 transition-all duration-700" alt="Web App Development">
                     </div>
                 </div>
 
-                <!-- Small Card: Social Media (Takes 2 columns now instead of 1/3 width, making it wider) -->
+                <!-- Small Card: Social Media -->
                 <div class="md:col-span-1 lg:col-span-2 bento-card bg-brand-dark rounded-[2rem] p-6 lg:p-8 shadow-xl relative overflow-hidden group flex flex-col justify-between" data-aos="fade-up" data-aos-delay="200">
                     <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-pink-500/20 rounded-full blur-[40px] -z-10"></div>
                     
@@ -279,7 +305,6 @@
                         </div>
 
                         <!-- Added View Plans Buttons -->
-                        <!-- Edited: Added target="_blank" -->
                         <div class="mt-auto mb-8">
                             <a href="Subscription_Plans/Social_Media_Handling.html" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 border border-white/10 text-white px-5 py-2.5 rounded-xl font-medium text-sm transition-all group/btn backdrop-blur-sm w-max shadow-lg">
                                 View Subscription Plans <i class="fas fa-arrow-right text-xs transform group-hover/btn:translate-x-1 transition-transform"></i>
@@ -289,11 +314,11 @@
                     
                     <!-- Decorative image element for Social Media -->
                     <div class="w-full h-32 xl:h-40 rounded-2xl bg-slate-800 border border-white/10 overflow-hidden relative shadow-inner shrink-0 transition-transform duration-500 group-hover:shadow-lg z-10 hidden sm:block">
-                        <img src="img/Social_Media_Handling.png" class="w-full h-full object-cover opacity-70 group-hover:scale-110 group-hover:opacity-100 transition-all duration-700" alt="Social Media Strategy">
+                        <img src="img/Social_Media_Handling.png" loading="lazy" decoding="async" class="w-full h-full object-cover opacity-70 group-hover:scale-110 group-hover:opacity-100 transition-all duration-700" alt="Social Media Strategy">
                     </div>
                 </div>
 
-                <!-- Small Card: Portfolios (Takes 2 columns) -->
+                <!-- Small Card: Portfolios -->
                 <div class="md:col-span-1 lg:col-span-2 bento-card bg-gradient-to-br from-pink-50 to-rose-50 rounded-[2rem] p-6 lg:p-8 border border-pink-100 shadow-sm group flex flex-col justify-between" data-aos="fade-up" data-aos-delay="300">
                     <div class="w-full z-10 flex-1">
                         <div class="w-14 h-14 bg-white text-rose-500 rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-sm">
@@ -306,11 +331,11 @@
                     </div>
                     <!-- Decorative image element for Portfolio -->
                     <div class="w-full h-28 xl:h-32 rounded-2xl bg-white border border-pink-100 overflow-hidden relative shadow-inner shrink-0 transition-transform duration-500 group-hover:shadow-lg z-10 hidden sm:block">
-                        <img src="img/Personal_Portfolio.png" class="w-full h-full object-cover opacity-90 group-hover:scale-110 transition-all duration-700" alt="Personal Portfolio UI">
+                        <img src="img/Personal_Portfolio.png" loading="lazy" decoding="async" class="w-full h-full object-cover opacity-90 group-hover:scale-110 transition-all duration-700" alt="Personal Portfolio UI">
                     </div>
                 </div>
 
-                <!-- Medium Card: Content Creation (Takes 3 columns) -->
+                <!-- Medium Card: Content Creation -->
                 <div class="md:col-span-2 lg:col-span-3 bento-card bg-white rounded-[2rem] p-6 lg:p-8 border border-gray-100 shadow-sm relative overflow-hidden group flex flex-col lg:flex-row gap-8 items-center" data-aos="fade-up" data-aos-delay="400">
                     <div class="flex-1 w-full z-10">
                         <div class="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center text-2xl mb-6">
@@ -331,7 +356,7 @@
                     </div>
                     <!-- Decorative image element fixed with exact sizing and shrink-0 to prevent squashing -->
                     <div class="hidden lg:block w-40 h-40 xl:w-48 xl:h-48 rounded-2xl bg-slate-50 border border-gray-100 overflow-hidden relative shadow-inner shrink-0 transition-transform duration-500 group-hover:shadow-lg">
-                        <img src="img/Content_Creation.png" class="w-full h-full object-cover opacity-90 group-hover:scale-110 transition-all duration-700" alt="Content Creation UI">
+                        <img src="img/Content_Creation.png" loading="lazy" decoding="async" class="w-full h-full object-cover opacity-90 group-hover:scale-110 transition-all duration-700" alt="Content Creation UI">
                     </div>
                 </div>
 
@@ -368,15 +393,12 @@
                             <p class="text-slate-400 mb-8 leading-relaxed">
                                 A complete ecosystem for hospitals to manage patients, doctors, and appointments seamlessly. Built with high security and an intuitive dashboard UI.
                             </p>
-                            <!-- <a href="docly.html" class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-white text-brand-dark hover:scale-110 transition-transform">
-                                <i class="fas fa-arrow-right transform -rotate-45"></i>
-                            </a> -->
                             <a href="#contact" class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-white text-brand-dark hover:scale-110 transition-transform">
                                 <i class="fas fa-arrow-right transform -rotate-45"></i>
                             </a>
                         </div>
                         <div class="order-1 lg:order-2 h-64 lg:h-full overflow-hidden relative">
-                            <img src="img/clinic_management_system.png" alt="Docly Dashboard" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 opacity-80 group-hover:opacity-100">
+                            <img src="img/clinic_management_system.png" loading="lazy" decoding="async" alt="Docly Dashboard" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 opacity-80 group-hover:opacity-100">
                         </div>
                     </div>
                 </div>
@@ -385,7 +407,7 @@
                 <div class="group relative rounded-3xl overflow-hidden bg-slate-800/50 border border-slate-700/50 hover:border-pink-500/50 transition-colors p-2" data-aos="fade-up">
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-0 lg:gap-8 items-center bg-slate-900 rounded-[1.5rem] overflow-hidden">
                         <div class="order-1 h-64 lg:h-full overflow-hidden relative">
-                            <img src="img/Class_management_system.png" alt="Kalki Game" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 opacity-80 group-hover:opacity-100">
+                            <img src="img/Class_management_system.png" loading="lazy" decoding="async" alt="Kalki Game" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 opacity-80 group-hover:opacity-100">
                         </div>
                         <div class="p-8 md:p-12 order-2">
                             <div class="inline-flex gap-2 mb-6">
@@ -395,10 +417,6 @@
                             <p class="text-slate-400 mb-8 leading-relaxed">
                                 An advanced web-based solution that helps schools, coaching institutes, and colleges manage student records, fee tracking, performance reports, and classroom operations efficiently.
                             </p>
-                            <!-- <a href="kalki.html" class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-white text-brand-dark hover:scale-110 transition-transform">
-                                <i class="fas fa-arrow-right transform -rotate-45"></i>
-                            </a> -->
-
                             <a href="#contact" class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-white text-brand-dark hover:scale-110 transition-transform">
                                 <i class="fas fa-arrow-right transform -rotate-45"></i>
                             </a>
@@ -498,7 +516,7 @@
                                 <span class="text-xl font-medium text-slate-200">Kalyan, Maharashtra</span>
                             </div>
 
-                            <!-- Social Links Moved Here -->
+                            <!-- Social Links -->
                             <div class="pt-6 border-t border-white/10 flex gap-4">
                                 <a href="https://wa.me/7208103454" target="_blank" class="w-12 h-12 rounded-full bg-[#25D366]/20 text-[#25D366] flex items-center justify-center text-xl hover:bg-[#25D366] hover:text-white transition-all shadow-lg"><i class="fab fa-whatsapp"></i></a>
                                 <a href="#" target="_blank" class="w-12 h-12 rounded-full bg-[#0077b5]/20 text-[#2EEBFF] flex items-center justify-center text-xl hover:bg-[#0077b5] hover:text-white transition-all shadow-lg"><i class="fab fa-linkedin-in"></i></a>
@@ -508,9 +526,7 @@
 
                    <!-- Clean Form -->
                     <div class="bg-white rounded-[2.5rem] p-8 md:p-10 text-brand-dark shadow-2xl flex flex-col justify-between">
-                        <!-- FormSubmit Direct POST Action added -->
                         <form action="https://api.web3forms.com/submit" method="POST" class="flex flex-col h-full">
-                            <!-- Hidden inputs for email formatting -->
                             <input type="hidden" name="access_key" value="52c451f6-773a-4623-8985-54981d02ff11">
                             
                             <div class="space-y-5 flex-grow">
@@ -544,27 +560,28 @@
         // Preloader Logic and Animation Initialization
         window.addEventListener('load', () => {
             const preloader = document.getElementById('preloader');
-            // Wait 2 seconds showing the logo
             setTimeout(() => {
                 preloader.style.opacity = '0';
                 setTimeout(() => {
                     preloader.style.display = 'none';
-                    // Allow scrolling again
                     document.body.classList.remove('overflow-hidden');
                     
-                    // Initialize AOS Animations EXACTLY when preloader finishes
-                    AOS.init({
-                        once: true, 
-                        offset: 50, 
-                        duration: 800, 
-                        easing: 'ease-out-cubic',
-                    });
-                    
-                }, 500); // Wait for fade out transition
-            }, 2000); 
+                    // Initialize AOS Animations
+                    if(typeof AOS !== 'undefined') {
+                        AOS.init({
+                            once: true, 
+                            offset: 50, 
+                            duration: 800, 
+                            easing: 'ease-out-cubic',
+                            disable: 'mobile' // Optional: disable on mobile for extreme performance
+                        });
+                    }
+                }, 500); 
+            }, 1000); // Reduced preloader time slightly for better UX
         });
 
-        // Navbar blur effect on scroll
+        // Navbar blur effect on scroll 
+        // PERFORMANCE HACK: { passive: true } makes scrolling butter smooth by not blocking main thread
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 20) {
@@ -574,7 +591,7 @@
                 navbar.classList.remove('shadow-sm');
                 navbar.style.background = 'transparent';
             }
-        });
+        }, { passive: true });
 
         // Mobile Menu Logic
         const btn = document.getElementById('mobile-menu-btn');
@@ -592,7 +609,6 @@
             }
         });
 
-        // Close mobile menu when link is clicked
         menu.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 menu.classList.add('hidden');
@@ -610,23 +626,20 @@
         canvas.height = window.innerHeight;
 
         let particlesArray = [];
-        // Particles ki density mobile aur desktop ke liye adjust ki hai
-        const numberOfParticles = window.innerWidth < 768 ? 40 : 90;
+        const numberOfParticles = window.innerWidth < 768 ? 30 : 70; // Slightly reduced for performance
 
         class Particle {
             constructor() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2 + 0.5; // Dots ka size
-                this.speedX = (Math.random() * 0.8) - 0.4; // X axis speed
-                this.speedY = (Math.random() * 0.8) - 0.4; // Y axis speed
-                // Dots ka color Indigo aur Pink ka mixture
+                this.size = Math.random() * 2 + 0.5; 
+                this.speedX = (Math.random() * 0.8) - 0.4; 
+                this.speedY = (Math.random() * 0.8) - 0.4; 
                 this.color = Math.random() > 0.5 ? '#6366f1' : '#ec4899'; 
             }
             update() {
                 this.x += this.speedX;
                 this.y += this.speedY;
-                // Screen ke corners se bounce hone ka logic
                 if (this.x > canvas.width || this.x < 0) this.speedX = -this.speedX;
                 if (this.y > canvas.height || this.y < 0) this.speedY = -this.speedY;
             }
@@ -645,22 +658,29 @@
             }
         }
 
+        // PERFORMANCE HACK: Optimize heavy math in canvas loop
+        const connectionDistance = 140;
+        const connectionDistanceSq = connectionDistance * connectionDistance; // 19600
+
         function animateParticles() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             for (let i = 0; i < particlesArray.length; i++) {
                 particlesArray[i].update();
                 particlesArray[i].draw();
                 
-                // Dots ke beech lines connect karna
-                for (let j = i; j < particlesArray.length; j++) {
+                for (let j = i + 1; j < particlesArray.length; j++) {
                     const dx = particlesArray[i].x - particlesArray[j].x;
                     const dy = particlesArray[i].y - particlesArray[j].y;
-                    const distance = Math.sqrt(dx * dx + dy * dy);
                     
-                    if (distance < 140) { // Distance jisme line draw hogi
+                    // PERFORMANCE HACK: Don't use Math.sqrt for every frame, it's CPU intensive!
+                    // Check squared distance first (super fast)
+                    const distSq = dx * dx + dy * dy;
+                    
+                    if (distSq < connectionDistanceSq) { 
+                        // Only calculate exact distance if they are close enough
+                        const distance = Math.sqrt(distSq);
                         ctx.beginPath();
-                        // Jaise jaise dots door jayenge, line light hoti jayegi
-                        const opacity = 1 - (distance / 140);
+                        const opacity = 1 - (distance / connectionDistance);
                         ctx.strokeStyle = `rgba(99, 102, 241, ${opacity * 0.25})`; 
                         ctx.lineWidth = 1;
                         ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
@@ -672,7 +692,6 @@
             requestAnimationFrame(animateParticles);
         }
 
-        // Screen resize hone par canvas adjust karna
         window.addEventListener('resize', () => {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
